@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NotFoundPage from '../components/404/NotFoundPage';
 import Header from '../components/header/Header';
 import Home from '../containers/home/Home';
