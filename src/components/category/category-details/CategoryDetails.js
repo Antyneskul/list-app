@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchCategoryItem } from '../../../actions/category';
+import { fetchCategoryItem } from '../../../actions/category/category';
 
 import getCategoryItem from '../../../selectors/categories';
 

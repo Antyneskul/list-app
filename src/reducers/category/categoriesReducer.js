@@ -1,4 +1,4 @@
-import { LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../actions/actionTypes';
+import { LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../../actions/actionTypes';
 
 export default (state = {}, action) => {
     switch (action.type) {

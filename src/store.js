@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import loggerMiddleware from './libs/logger/loggerMiddleware';
 import rootReducer from './reducers/rootReducer';
 
-const middlewares = [thunk];
+const middlewares = [loggerMiddleware, thunk];
 
 const configureStore = (initialState = {
     categories: {

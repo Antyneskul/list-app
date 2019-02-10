@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { fetchCategory } from '../../actions/category';
+import { fetchCategory } from '../../actions/category/category';
 
 const Category = ({match, fetchCategory, data}) => {
     const category = match.params.id;

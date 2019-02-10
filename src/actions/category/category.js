@@ -1,4 +1,4 @@
-import { LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from './actionTypes';
+import { LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../actionTypes';
 
 export const loadCategory = ({id = '', payload = []}) => ({
     type: LOAD_CATEGORY,

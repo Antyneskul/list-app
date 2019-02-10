@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import nock from 'nock';
-import { LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from './actionTypes';
+import { LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../actionTypes';
 import { API_URL, fetchCategory, fetchCategoryItem, loadCategory, loadCategoryItem } from './category';
 
 const middlewares = [thunk];
