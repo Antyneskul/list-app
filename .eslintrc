@@ -9,9 +9,12 @@
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "parser": "babel-eslint",
   "ecmaFeatures": {
     "jsx": true,
-    "experimentalObjectRestSpread": true
+    "experimentalObjectRestSpread": true,
+    "destructuring": true,
+    "spread": true
   },
   "parserOptions": {
     "sourceType": "module"
