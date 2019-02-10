@@ -36,7 +36,7 @@ describe('<CategoryDetails>', () => {
     });
 
     it('Should render correct list', () => {
-        expect(wrapper.find('li').text()).toEqual('name: Alex');
+        expect(wrapper.find('ListItem').text()).toEqual('name: Alex');
     });
 
 

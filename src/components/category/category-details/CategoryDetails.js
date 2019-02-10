@@ -2,13 +2,30 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import styled from 'styled-components';
 import { fetchCategoryItem } from '../../../actions/category/category';
 
 import getCategoryItem from '../../../selectors/categories';
+import { formatData } from './helper';
+
+
+const Head = styled.h1`
+    text-transform: capitalize;
+    margin-bottom: 25px;
+`;
+
+const ListItem = styled.li`
+    margin-bottom: 10px;
+    text-transform: capitalize
+`;
+
+ListItem.displayName = 'ListItem';
+
 
 const CategoryDetails = ({match, categoriesData, fetchCategoryItem}) => {
     const {id: category, name: itemName} = match.params;
     const item = getCategoryItem(categoriesData, {category, itemName}) || {};
+
 
     useEffect(() => {
         if (!Object.keys(item).length) {
@@ -16,17 +33,27 @@ const CategoryDetails = ({match, categoriesData, fetchCategoryItem}) => {
         }
     });
 
-    return (
+    const renderDeatils = item => (
         <Fragment>
+            <Head>
+                {item.name}
+            </Head>
             <ul>
                 {
-                    item && Object.keys(item).map(key => (
-                        <li key={key}><b>{key}</b>: {item[key]}</li>
+                    Object.keys(item).map(key => (
+                        <ListItem key={key}>
+                            <b>{key}</b>: {item[key]}
+                        </ListItem>
                     ))
                 }
             </ul>
         </Fragment>
+    );
 
+    return (
+        (item) ?
+            renderDeatils(formatData(item)) :
+            <Head>Nothing to display</Head>
     );
 };
 

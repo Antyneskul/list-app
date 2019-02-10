@@ -36,7 +36,7 @@ describe('<Category>', () => {
     });
 
     it('Should render correct Header', () => {
-        expect(wrapper.find('h1').text()).toEqual('PEOPLE');
+        expect(wrapper.find('Head').text()).toEqual('people');
     });
 
     it('Should render 2 Links', () => {
