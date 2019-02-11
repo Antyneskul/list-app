@@ -46,5 +46,15 @@ describe('<Category>', () => {
         expect(wrapper.find('Link').length).toBe(2);
     });
 
+    it('Should render Error Message', () => {
+        const newProps = {...props, error: 'Error Message'};
+
+        wrapper = shallow(
+            <Category {...newProps} />
+        );
+
+        expect(wrapper.find('ErrorMessage').text()).toBe('Error Message');
+    });
+
 });
 

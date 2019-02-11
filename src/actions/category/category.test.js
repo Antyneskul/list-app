@@ -1,7 +1,7 @@
 import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { FETCH_START, FETCH_SUCCESS, LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../actionTypes';
+import { FETCH_FAIL, FETCH_START, FETCH_SUCCESS, LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../actionTypes';
 import { API_URL, fetchCategory, fetchCategoryItem, loadCategory, loadCategoryItem } from './category';
 
 const middlewares = [thunk];
@@ -119,6 +119,34 @@ describe('Category Actions', () => {
 
         expect(store.getActions()).toEqual(expectedActions);
     });
+
+
+    test('should call fetchFail from fetchCategory', async () => {
+        nock(API_URL)
+            .get('/people/')
+            .replyWithError('something awful happened');
+
+        const store = mockStore({});
+        const expectedActions = [
+            {
+                type: FETCH_START
+            },
+            {
+                type: FETCH_FAIL,
+                error: 'Network request failed'
+            }
+        ];
+
+        try {
+        //
+        } catch (e) {
+            await store.dispatch(fetchCategory('people'));
+            expect(store.getActions()).toEqual(expectedActions);
+        }
+
+
+    });
+
 });
 
 

@@ -14,6 +14,8 @@ const Backdrop = styled.div`
     background: rgba(0, 0, 0, 0.5);
 `;
 
+Backdrop.displayName = 'Backdrop';
+
 
 const Loader = ({fetching}) => (
     fetching && <Fragment>
@@ -30,3 +32,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Loader);
+export  { Loader};

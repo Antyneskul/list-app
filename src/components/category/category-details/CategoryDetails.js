@@ -15,6 +15,8 @@ const Head = styled.h1`
     margin-bottom: 25px;
 `;
 
+Head.displayName = 'Head';
+
 const ListItem = styled.li`
     margin-bottom: 10px;
     text-transform: capitalize

@@ -13,11 +13,13 @@ const Head = styled.h1`
     margin-bottom: 25px;
 `;
 
+Head.displayName = 'Head';
+
 const ErrorMessage = styled.h2`
     color: red;
 `;
 
-Head.displayName = 'Head';
+ErrorMessage.displayName = 'ErrorMessage';
 
 const SubCategory = styled.div`
     margin-bottom: 15px;
@@ -47,7 +49,7 @@ const Category = ({match, fetchCategory, categories, error}) => {
     const renderError = () => (
         <Fragment>
             <ErrorMessage>
-                {error.message}
+                {error}
             </ErrorMessage>
         </Fragment>
     );
@@ -77,7 +79,7 @@ Category.propTypes = {
     match: PropTypes.object,
     fetchCategory: PropTypes.func,
     categories: PropTypes.object,
-    error: PropTypes.object
+    error: PropTypes.string
 };
 
 

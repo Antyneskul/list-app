@@ -1,5 +1,6 @@
 export const formatData = obj => {
     const formatted = {};
+
     Object.keys(obj).forEach(key => {
         let value = obj[key];
 
@@ -12,7 +13,6 @@ export const formatData = obj => {
             formatted[key.replace(/_/g, ' ')] = value;
         }
     });
-
 
     return formatted;
 };

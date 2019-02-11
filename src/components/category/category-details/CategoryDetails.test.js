@@ -41,6 +41,21 @@ describe('<CategoryDetails>', () => {
         expect(wrapper.find('ListItem').text()).toEqual('name: Alex');
     });
 
+    it('Should render  "Nothing to display" if data is empty', () => {
+        const newProps = {
+            ...props, categoriesData: {
+                people: {
+                    data: []
+                }
+            }
+        };
+        wrapper = wrapper = shallow(
+            <CategoryDetails {...newProps} />
+        );
+
+        expect(wrapper.find('Head').text()).toEqual('Nothing to display');
+    });
+
 
 });
 

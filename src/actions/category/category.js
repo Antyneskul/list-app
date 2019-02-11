@@ -32,11 +32,10 @@ export const fetchCategory = category => async (dispatch) => {
     try {
         const {results: payload} = await fetch(`${API_URL}/${category}/`)
             .then(response => response.json());
-
         dispatch(fetchSuccess());
         dispatch(loadCategory({id: category, payload}));
     } catch (error) {
-        dispatch(fetchFail({error}));
+        dispatch(fetchFail({error: error.message}));
     }
 
 };
@@ -50,6 +49,6 @@ export const fetchCategoryItem = ({category, name}) => async (dispatch) => {
         dispatch(fetchSuccess());
         dispatch(loadCategoryItem({id: category, payload}));
     } catch (error) {
-        dispatch(fetchFail({error}));
+        dispatch(fetchFail({error: error.message}));
     }
 };
