@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import NotFoundPage from '../components/404/NotFoundPage';
-import Header from '../components/header/Header';
 import Category from '../components/category/Category';
 import CategoryDetails from '../components/category/category-details/CategoryDetails';
+import Header from '../components/header/Header';
 import Home from '../components/home/Home';
-import styled from 'styled-components';
+import Loader from '../components/loader/Loader';
 
 const Wrapper = styled.div`
     margin: 0 auto;
@@ -15,6 +16,7 @@ const Wrapper = styled.div`
 const AppRouter = () => (
     <BrowserRouter>
         <Fragment>
+            <Loader/>
             <Header/>
             <Wrapper>
                 <Switch>

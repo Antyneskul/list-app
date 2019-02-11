@@ -1,2 +1,6 @@
-export default (categoriesData, {category, itemName}) => categoriesData[category] && categoriesData[category].find(({name}) => name === itemName);
+export default (categoriesData, {category, itemName}) => {
+    const {data = []} = categoriesData[category] || {};
+
+    return data && data.find(({name}) => name === itemName);
+};
 

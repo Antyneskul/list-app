@@ -1,13 +1,12 @@
-import trackErrors from './libs/tracker/tracker';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from './store';
 import App from './App';
 
 import './index.css';
+import trackErrors from './libs/tracker/tracker';
 import * as serviceWorker from './serviceWorker';
+import configureStore from './store';
 
 trackErrors(parseInt(Math.random() * 1000));
 

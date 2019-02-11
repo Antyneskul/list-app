@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
@@ -10,6 +10,7 @@ import { formatData } from './helper';
 
 
 const Head = styled.h1`
+    font-size: 1.8rem;
     text-transform: capitalize;
     margin-bottom: 25px;
 `;
@@ -22,18 +23,18 @@ const ListItem = styled.li`
 ListItem.displayName = 'ListItem';
 
 
-const CategoryDetails = ({match, categoriesData, fetchCategoryItem}) => {
+const CategoryDetails = ({match, categoriesData, fetchCategoryItem, fetching}) => {
     const {id: category, name: itemName} = match.params;
     const item = getCategoryItem(categoriesData, {category, itemName}) || {};
-
+    const itemExists = Object.keys(item).length;
 
     useEffect(() => {
-        if (!Object.keys(item).length) {
+        if (!itemExists) {
             fetchCategoryItem({category, name: itemName});
         }
-    });
+    }, []);
 
-    const renderDeatils = item => (
+    const renderDetails = item => (
         <Fragment>
             <Head>
                 {item.name}
@@ -51,8 +52,8 @@ const CategoryDetails = ({match, categoriesData, fetchCategoryItem}) => {
     );
 
     return (
-        (item) ?
-            renderDeatils(formatData(item)) :
+        (itemExists || fetching) ?
+            renderDetails(formatData(item)) :
             <Head>Nothing to display</Head>
     );
 };
@@ -61,11 +62,13 @@ const CategoryDetails = ({match, categoriesData, fetchCategoryItem}) => {
 CategoryDetails.propTypes = {
     match: PropTypes.object,
     categoriesData: PropTypes.object,
-    fetchCategoryItem: PropTypes.func
+    fetchCategoryItem: PropTypes.func,
+    fetching: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-    categoriesData: state.categories
+    categoriesData: state.categories,
+    fetching: state.fetch.pending
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

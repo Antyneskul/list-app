@@ -8,8 +8,13 @@ import { fetchCategory } from '../../actions/category/category';
 
 
 const Head = styled.h1`
+    font-size: 1.8rem;
     text-transform: capitalize;
     margin-bottom: 25px;
+`;
+
+const ErrorMessage = styled.h2`
+    color: red;
 `;
 
 Head.displayName = 'Head';
@@ -26,30 +31,44 @@ const SubCategory = styled.div`
     }
 `;
 
-const Category = ({match, fetchCategory, data}) => {
+const Category = ({match, fetchCategory, categories, error}) => {
     const category = match.params.id;
-    const categoryData = data[category];
+    const categoryData = categories[category];
+    const {data, loaded} = categoryData;
+
 
     useEffect(() => {
-        if (!categoryData.length) {
+        if (!loaded) {
             fetchCategory(category);
         }
     }, [category]);
 
-    return (
+
+    const renderError = () => (
+        <Fragment>
+            <ErrorMessage>
+                {error.message}
+            </ErrorMessage>
+        </Fragment>
+    );
+
+    const renderDetails = () => (
         <Fragment>
             <Head>
                 {category}
             </Head>
             {
-                categoryData.map(item => (
+                data.map(item => (
                     <SubCategory key={item.name}>
-                        <Link to={`${match.url}/${item.name}`} >{item.name}</Link>
+                        <Link to={`${match.url}/${item.name}`}>{item.name}</Link>
                     </SubCategory>
                 ))
             }
         </Fragment>
+    );
 
+    return (
+        error ? renderError() : renderDetails()
     );
 };
 
@@ -57,12 +76,14 @@ const Category = ({match, fetchCategory, data}) => {
 Category.propTypes = {
     match: PropTypes.object,
     fetchCategory: PropTypes.func,
-    data: PropTypes.object
+    categories: PropTypes.object,
+    error: PropTypes.object
 };
 
 
 const mapStateToProps = state => ({
-    data: state.categories
+    categories: state.categories,
+    error: state.fetch.error
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

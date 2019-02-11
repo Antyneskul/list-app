@@ -1,5 +1,5 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 import { Category } from './Category';
 
 
@@ -11,15 +11,18 @@ describe('<Category>', () => {
             }
         },
         fetchCategory: jest.fn(),
-        data: {
-            people: [
-                {
-                    name: 'Alex'
-                },
-                {
-                    name: 'Bob'
-                }
-            ]
+        categories: {
+            people: {
+                data: [
+                    {
+                        name: 'Alex'
+                    },
+                    {
+                        name: 'Bob'
+                    }
+                ],
+                loaded: true
+            }
         }
     };
 

@@ -1,5 +1,5 @@
-import React from 'react';
 import { shallow } from 'enzyme';
+import React from 'react';
 import { CategoryDetails } from './CategoryDetails';
 
 
@@ -12,14 +12,16 @@ describe('<CategoryDetails>', () => {
             }
         },
         categoriesData: {
-            people: [
-                {
-                    name: 'Alex',
-                },
-                {
-                    name: 'Bob'
-                }
-            ]
+            people: {
+                data: [
+                    {
+                        name: 'Alex',
+                    },
+                    {
+                        name: 'Bob'
+                    }
+                ]
+            }
         }
     };
 

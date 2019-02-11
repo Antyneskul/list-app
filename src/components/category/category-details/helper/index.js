@@ -1,7 +1,6 @@
 export const formatData = obj => {
     const formatted = {};
-
-    Object.keys(obj).map(key => {
+    Object.keys(obj).forEach(key => {
         let value = obj[key];
 
         if (!/^http/g.test(value) && value.length) {
