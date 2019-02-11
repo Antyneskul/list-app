@@ -19,7 +19,7 @@ describe('CATEGORIES_REDUCER', () => {
             payload: categoryData
         };
 
-        expect(categoriesReducer({}, action)).toEqual({people: categoryData});
+        expect(categoriesReducer({}, action)).toEqual({people: {data: categoryData, loaded: true}});
     });
 
     it('handles action with type LOAD_CATEGORY_ITEM', () => {
@@ -30,6 +30,6 @@ describe('CATEGORIES_REDUCER', () => {
             payload: categoryData
         };
 
-        expect(categoriesReducer({}, action)).toEqual({people: categoryData});
+        expect(categoriesReducer({}, action)).toEqual({people: {data: categoryData}});
     });
 });

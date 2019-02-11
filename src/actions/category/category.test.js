@@ -1,7 +1,7 @@
+import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import nock from 'nock';
-import { LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../actionTypes';
+import { FETCH_START, FETCH_SUCCESS, LOAD_CATEGORY, LOAD_CATEGORY_ITEM } from '../actionTypes';
 import { API_URL, fetchCategory, fetchCategoryItem, loadCategory, loadCategoryItem } from './category';
 
 const middlewares = [thunk];
@@ -71,6 +71,12 @@ describe('Category Actions', () => {
         const store = mockStore({});
         const expectedActions = [
             {
+                type: FETCH_START
+            },
+            {
+                type: FETCH_SUCCESS
+            },
+            {
                 type: LOAD_CATEGORY,
                 id: 'people',
                 payload: [{name: 'Alex'}]
@@ -96,6 +102,12 @@ describe('Category Actions', () => {
 
         const store = mockStore({});
         const expectedActions = [
+            {
+                type: FETCH_START
+            },
+            {
+                type: FETCH_SUCCESS
+            },
             {
                 type: LOAD_CATEGORY_ITEM,
                 id: 'people',
