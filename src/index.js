@@ -9,7 +9,6 @@ import * as serviceWorker from './serviceWorker';
 import configureStore from './store';
 
 trackErrors(parseInt(Math.random() * 1000));
-
 // setTimeout(() => {
 //     throw new Error('Heyyyy');
 // }, 5000);

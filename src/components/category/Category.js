@@ -36,8 +36,7 @@ const SubCategory = styled.div`
 const Category = ({match, fetchCategory, categories, error}) => {
     const category = match.params.id;
     const categoryData = categories[category];
-    const {data, loaded} = categoryData;
-
+    const {loaded = false, data = []} = categoryData || {};
 
     useEffect(() => {
         if (!loaded) {
@@ -74,14 +73,12 @@ const Category = ({match, fetchCategory, categories, error}) => {
     );
 };
 
-
 Category.propTypes = {
     match: PropTypes.object,
     fetchCategory: PropTypes.func,
     categories: PropTypes.object,
     error: PropTypes.string
 };
-
 
 const mapStateToProps = state => ({
     categories: state.categories,

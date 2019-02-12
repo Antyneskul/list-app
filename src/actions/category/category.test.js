@@ -71,7 +71,9 @@ describe('Category Actions', () => {
         const store = mockStore({});
         const expectedActions = [
             {
-                type: FETCH_START
+                type: FETCH_START,
+                url: 'https://swapi.co/api/people/',
+
             },
             {
                 type: FETCH_SUCCESS
@@ -103,7 +105,8 @@ describe('Category Actions', () => {
         const store = mockStore({});
         const expectedActions = [
             {
-                type: FETCH_START
+                type: FETCH_START,
+                url: 'https://swapi.co/api/people/?search=Alex',
             },
             {
                 type: FETCH_SUCCESS
@@ -138,7 +141,7 @@ describe('Category Actions', () => {
         ];
 
         try {
-        //
+            //
         } catch (e) {
             await store.dispatch(fetchCategory('people'));
             expect(store.getActions()).toEqual(expectedActions);

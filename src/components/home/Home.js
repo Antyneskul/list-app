@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const Paragraph = styled.p`
     margin-top: 10px;
+    line-height: 1.5rem;
 `;
 
 const Heading1 = styled.h1`
@@ -12,7 +13,7 @@ const Heading1 = styled.h1`
 
 const Heading2 = styled.h2`
     font-size: 1.5rem;
-    margin: 10px 0;
+    margin: 20px 0;
 `;
 
 const Heading3 = styled.h3`
@@ -23,7 +24,11 @@ const Heading3 = styled.h3`
 const OrderedList = styled.ol`
     li {
         list-style: decimal;
-        margin-bottom: 5px
+        margin-bottom: 10px;
+        
+        &:last-child {
+            margin-bottom: 20px;
+        }
     }
 `;
 

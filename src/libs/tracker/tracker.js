@@ -27,7 +27,6 @@ class Tracker {
             const targetSelector = this.getSelector(target);
             const targetParentSelector = this.getSelector(target.parentNode);
 
-
             const stepInfo = {
                 targetNode,
                 selector: `${targetParentSelector} ${targetSelector}`,
@@ -35,6 +34,10 @@ class Tracker {
                 time: Date.now()
             };
 
+
+            if (target.href) {
+                stepInfo.href = target.href;
+            }
 
             this.errorPath.push(stepInfo);
         }
@@ -62,4 +65,4 @@ const init = id => {
 
 export default init;
 
-export { Tracker};
+export { Tracker };

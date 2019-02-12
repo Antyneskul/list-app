@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 import { fetchCategoryItem } from '../../../actions/category/category';
@@ -13,6 +14,12 @@ const Head = styled.h1`
     font-size: 1.8rem;
     text-transform: capitalize;
     margin-bottom: 25px;
+    
+    line-height: 2rem;
+    
+    a {
+        color: inherit;
+    }
 `;
 
 Head.displayName = 'Head';
@@ -30,6 +37,7 @@ const CategoryDetails = ({match, categoriesData, fetchCategoryItem, fetching}) =
     const item = getCategoryItem(categoriesData, {category, itemName}) || {};
     const itemExists = Object.keys(item).length;
 
+
     useEffect(() => {
         if (!itemExists) {
             fetchCategoryItem({category, name: itemName});
@@ -39,7 +47,7 @@ const CategoryDetails = ({match, categoriesData, fetchCategoryItem, fetching}) =
     const renderDetails = item => (
         <Fragment>
             <Head>
-                {item.name}
+                <Link to={`/category/${category}`}>{category}</Link> : {item.name}
             </Head>
             <ul>
                 {

@@ -12,8 +12,9 @@ export const loadCategoryItem = ({id = '', payload = []}) => ({
     payload
 });
 
-export const fetchStart = () => ({
-    type: FETCH_START
+export const fetchStart = ({url = ''}) => ({
+    type: FETCH_START,
+    url
 });
 
 export const fetchSuccess = () => ({
@@ -28,12 +29,19 @@ export const fetchFail = ({error}) => ({
 export const API_URL = 'https://swapi.co/api';
 
 export const fetchCategory = category => async (dispatch) => {
-    dispatch(fetchStart());
+    const url = `${API_URL}/${category}/`;
+    dispatch(fetchStart({url}));
     try {
-        const {results: payload} = await fetch(`${API_URL}/${category}/`)
-            .then(response => response.json());
-        dispatch(fetchSuccess());
-        dispatch(loadCategory({id: category, payload}));
+        const response = await fetch(url);
+
+        if (response.status === 200) {
+            const {results: payload} = await response.json();
+
+            dispatch(fetchSuccess());
+            dispatch(loadCategory({id: category, payload}));
+        } else {
+            dispatch(fetchFail({error: 'Not Found'}));
+        }
     } catch (error) {
         dispatch(fetchFail({error: error.message}));
     }
@@ -41,13 +49,19 @@ export const fetchCategory = category => async (dispatch) => {
 };
 
 export const fetchCategoryItem = ({category, name}) => async (dispatch) => {
-    dispatch(fetchStart());
+    const url = `${API_URL}/${category}/?search=${name}`;
+    dispatch(fetchStart({url}));
     try {
-        const {results: payload} = await fetch(`${API_URL}/${category}/?search=${name}`)
-            .then(response => response.json());
+        const response = await fetch(`${API_URL}/${category}/?search=${name}`);
 
-        dispatch(fetchSuccess());
-        dispatch(loadCategoryItem({id: category, payload}));
+        if (response.status === 200) {
+            const {results: payload} = await response.json();
+
+            dispatch(fetchSuccess());
+            dispatch(loadCategoryItem({id: category, payload}));
+        } else {
+            dispatch(fetchFail({error: 'Not Found'}));
+        }
     } catch (error) {
         dispatch(fetchFail({error: error.message}));
     }
