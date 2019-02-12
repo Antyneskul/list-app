@@ -1,4 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Categories List app charged with STAR WARS API 
+
+This is simple application created with:
+ - [Create React App](https://facebook.github.io/create-react-app/)
+ - [SWAPI](https://swapi.co/)
+ 
+## Quick Overview
+
+```sh
+git clone https://github.com/Antyneskul/list-app.git
+cd list-app
+npm install
+npm start
+```
+
+Then open http://localhost:3000/ to see the app.
 
 ## Available Scripts
 
@@ -27,13 +42,20 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `npm run serve:local`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Runs the app in the production mode.<br>
+Open http://localhost:5000 to view it in the browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## License
 
+Create React App is open source software [licensed as MIT](https://github.com/facebook/create-react-app/blob/master/LICENSE).
+
+
+
+## Possible Improvements
+
+- Customize service worker to pre cache API calls ([example of CRA SW tuning](https://medium.freecodecamp.org/how-to-customize-service-workers-with-create-react-app-4424dda6210c))
+- Show category details as Collapsible component
