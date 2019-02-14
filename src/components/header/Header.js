@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const NavHeader = styled.header`
     height: 50px;
@@ -87,40 +88,45 @@ const Back = styled.span`
     }
 `;
 
-const Header = () => {
-    const [visible, setVisible] = useState(false);
+const Header = ({history}) => {
+  const [visible, setVisible] = useState(false);
 
-    const handleToggleMenu = () => {
-        setVisible(!visible);
-    };
+  const handleToggleMenu = () => {
+    setVisible(!visible);
+  };
 
-    const handleToggleRedirect = () => {
-        window.history.back();
-    };
+  const handleToggleRedirect = () => {
+    history.goBack();
+  };
 
-    useEffect(() => {
-        if(visible) {
-            setInterval(handleToggleMenu, 3000);
-        }
-    });
+  useEffect(() => {
+    if (visible) {
+      setInterval(handleToggleMenu, 3000);
+    }
+  });
 
-    return (
-        <NavHeader>
-            <Back onClick={handleToggleRedirect}>
-                Back
-            </Back>
-            <BurgerMenu onClick={handleToggleMenu}>
-                Categories
-            </BurgerMenu>
-            <Nav visible={visible} onClick={handleToggleMenu}>
-                <li><NavLink to="/category/people" activeClassName="is-active">People</NavLink></li>
-                <li><NavLink to="/category/planets" activeClassName="is-active">Planets</NavLink></li>
-                <li><NavLink to="/category/starships" activeClassName="is-active">Starships</NavLink></li>
-                <li><NavLink to="/category/vehicles" activeClassName="is-active">Vehicles</NavLink></li>
-            </Nav>
+  return (
+    <NavHeader>
+      <Back onClick={handleToggleRedirect}>
+        Back
+      </Back>
+      <BurgerMenu onClick={handleToggleMenu}>
+        Categories
+      </BurgerMenu>
+      <Nav visible={visible} onClick={handleToggleMenu}>
+        <li><NavLink to="/category/people" activeClassName="is-active">People</NavLink></li>
+        <li><NavLink to="/category/planets" activeClassName="is-active">Planets</NavLink></li>
+        <li><NavLink to="/category/starships" activeClassName="is-active">Starships</NavLink></li>
+        <li><NavLink to="/category/vehicles" activeClassName="is-active">Vehicles</NavLink></li>
+      </Nav>
 
-        </NavHeader>
-    );
+    </NavHeader>
+  );
 };
 
-export default Header;
+Header.propTypes = {
+  history: PropTypes.object.isRequired
+};
+
+export default withRouter(Header);
+export { Header};
