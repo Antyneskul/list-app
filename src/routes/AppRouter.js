@@ -8,7 +8,7 @@ import Header from '../components/header/Header';
 import Home from '../components/home/Home';
 import Loader from '../components/loader/Loader';
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
     margin: 0 auto;
     width: 80%;
 `;
