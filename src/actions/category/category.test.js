@@ -125,6 +125,10 @@ describe('Category Actions', () => {
 
 
     test('should call fetchFail from fetchCategory', async () => {
+        // Mock console.log to hide nock error output from stout
+        const originalError = console.error;
+        console.error = jest.fn();
+
         nock(API_URL)
             .get('/people/')
             .replyWithError('something awful happened');
@@ -132,7 +136,8 @@ describe('Category Actions', () => {
         const store = mockStore({});
         const expectedActions = [
             {
-                type: FETCH_START
+                type: FETCH_START,
+                url: 'https://swapi.co/api/people/',
             },
             {
                 type: FETCH_FAIL,
@@ -140,14 +145,11 @@ describe('Category Actions', () => {
             }
         ];
 
-        try {
-            //
-        } catch (e) {
-            await store.dispatch(fetchCategory('people'));
-            expect(store.getActions()).toEqual(expectedActions);
-        }
+        await store.dispatch(fetchCategory('people'));
+        expect(store.getActions()).toEqual(expectedActions);
 
-
+        // restore console.log
+        console.error = originalError;
     });
 
 });
